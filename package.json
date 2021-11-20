@@ -1,0 +1,26 @@
+{
+  "name": "piksel",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.0",
+    "nes.css": "^2.3.0",
+    "postcss": "^8.3.11",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "tailwindcss": "^2.2.19",
+    "zundo": "^1.5.1",
+    "zustand": "^3.6.5"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
+  }
+}
