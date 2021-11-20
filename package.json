@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --ignore-engines",
+    "build": "tsc && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
