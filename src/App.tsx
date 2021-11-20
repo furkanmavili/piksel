@@ -7,7 +7,7 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Toolbar />
         <div className="flex-1 text-center">
           <Grid />
