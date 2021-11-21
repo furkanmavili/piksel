@@ -1,8 +1,10 @@
-import  { GetState, SetState, StoreApi } from "zustand";
+
+import { GetState, SetState, StoreApi } from "zustand";
 import createGridSlice, { Grid } from "./createGridSlice";
 import createSettingsSlice, { Settings } from "./createSettingsSlice";
 import createToolbarSlice, {Toolbar} from "./createToolbarSlice"
-import create, { UndoState } from 'zundo';
+import create, { undoMiddleware, UndoState } from 'zundo';
+
 
 export type StoreState = Grid & Settings  & Toolbar & UndoState
 

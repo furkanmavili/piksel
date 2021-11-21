@@ -5,6 +5,7 @@ function Settings() {
   const handleUndo = useStore((state) => state.undo);
   const handleRedo = useStore((state) => state.redo);
   const toggleGrid = useStore((state) => state.toggleShowGrid);
+  const getState = useStore(state => state.getState)
 
   useEffect(() => {
     if (!handleUndo) return;
@@ -20,7 +21,7 @@ function Settings() {
     }
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler)
-  }, [handleUndo]);
+  }, [handleUndo, handleRedo]);
 
   return (
     <div className="flex flex-col space-y-10">
