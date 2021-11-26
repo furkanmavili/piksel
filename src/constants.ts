@@ -1,5 +1,7 @@
-export const DEFAULT_SIZE = 5;
+export const DEFAULT_SIZE = 20;
 export const DEFAULT_COLOR = "#52525B";
+export const LIGHT_GRAY = "#c1c0c1"
+export const DARK_GRAY = "#818081"
 
 export const COLORS = [
   "#FF141923",
@@ -21,3 +23,4 @@ export const COLORS = [
   "#FFbcb0c2",
   DEFAULT_COLOR
 ];
+

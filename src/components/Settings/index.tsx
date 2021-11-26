@@ -24,7 +24,7 @@ function Settings() {
   }, [handleUndo, handleRedo]);
 
   return (
-    <div className="flex flex-col space-y-10">
+    <div className="flex flex-col space-y-10 nes-container is-dark is-rounded">
       <div className="flex justify-between">
         <button className="nes-btn" onClick={handleUndo}>
           Undo

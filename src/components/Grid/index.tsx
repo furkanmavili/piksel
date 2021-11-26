@@ -5,14 +5,13 @@ import Cell from "./Cell";
 const GRID_WIDTH = 750;
 const ZOOM_SPEED = 0.1;
 
-const selector = (state: StoreState) => state.cells
+const selector = (state: StoreState) => state.cells;
 
 type GridProps = {
   isPreview?: boolean;
-}
+};
 
-function Grid({isPreview} : GridProps) {
-
+function Grid({ isPreview }: GridProps) {
   const [shouldFill, setShouldFill] = useState(false);
   const [zoom, setZoom] = useState(1);
   const cells = useStore(selector);
@@ -22,8 +21,8 @@ function Grid({isPreview} : GridProps) {
 
   // save current cells to localstorage
   useEffect(() => {
-    return () => localStorage.setItem("grid", JSON.stringify(cells))
-  }, [cells])
+    return () => localStorage.setItem("grid", JSON.stringify(cells));
+  }, [cells]);
 
   // scroll zoom
   useEffect(() => {
@@ -65,19 +64,23 @@ function Grid({isPreview} : GridProps) {
   );
 
   return (
-    <div
-      ref={ref}
-      onMouseDown={(e) => {
-        e.preventDefault();
-        setShouldFill(true);
-      }}
-      onTouchStart={() => setShouldFill(true)}
-      onMouseLeave={() => setShouldFill(false)}
-      onMouseUp={() => setShouldFill(false)}
-      style={{ maxWidth: GRID_WIDTH }}
-      className="flex w-full flex-wrap mx-auto z-10"
-    >
-      {renderCells}
+    <div className="nes-container is-dark is-rounded p-5">
+      <div style={{ height: 790 }} className="overflow-auto">
+        <div
+          ref={ref}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setShouldFill(true);
+          }}
+          onTouchStart={() => setShouldFill(true)}
+          onMouseLeave={() => setShouldFill(false)}
+          onMouseUp={() => setShouldFill(false)}
+          style={{ maxWidth: GRID_WIDTH }}
+          className="flex w-full flex-wrap mx-auto z-10"
+        >
+          {renderCells}
+        </div>
+      </div>
     </div>
   );
 }

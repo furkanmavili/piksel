@@ -5,7 +5,7 @@ type MainProps = {
 };
 
 function Main({ children }: MainProps) {
-  return <div className="my-20 text-sm">{children}</div>;
+  return <div className="my-5 text-sm">{children}</div>;
 }
 
 export default Main;
