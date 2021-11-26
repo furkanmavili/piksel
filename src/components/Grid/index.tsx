@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useStore, { StoreState } from "../../store/useStore";
 import Cell from "./Cell";
 
@@ -7,7 +7,12 @@ const ZOOM_SPEED = 0.1;
 
 const selector = (state: StoreState) => state.cells
 
-function Grid() {
+type GridProps = {
+  isPreview?: boolean;
+}
+
+function Grid({isPreview} : GridProps) {
+
   const [shouldFill, setShouldFill] = useState(false);
   const [zoom, setZoom] = useState(1);
   const cells = useStore(selector);
@@ -15,22 +20,28 @@ function Grid() {
   const ref = useRef<HTMLDivElement>(null);
   const cellSize = GRID_WIDTH / cells.length;
 
-  
-  // useEffect(() => {
-  //   const wheelHandler = (e: WheelEvent) => {
-  //     if (!ref.current) return;
-  //     if (e.deltaY > 0) {
-  //       setZoom((prev) => prev - ZOOM_SPEED);
-  //     } else {
-  //       setZoom((prev) => prev + ZOOM_SPEED);
-  //     }
-  //   };
-  //   document.addEventListener("wheel", wheelHandler);
-  //   return () => document.removeEventListener("wheel", wheelHandler);
-  // }, []);
-
+  // save current cells to localstorage
   useEffect(() => {
-    if (!ref.current) return;
+    return () => localStorage.setItem("grid", JSON.stringify(cells))
+  }, [cells])
+
+  // scroll zoom
+  useEffect(() => {
+    if (isPreview) return;
+    const wheelHandler = (e: WheelEvent) => {
+      if (!ref.current) return;
+      if (e.deltaY > 0) {
+        setZoom((prev) => prev - ZOOM_SPEED);
+      } else {
+        setZoom((prev) => prev + ZOOM_SPEED);
+      }
+    };
+    document.addEventListener("wheel", wheelHandler);
+    return () => document.removeEventListener("wheel", wheelHandler);
+  }, []);
+  // scroll zoom
+  useEffect(() => {
+    if (!ref.current || isPreview) return;
     ref.current.style.transform = `scale(${zoom})`;
     ref.current.style.transform = `scale(${zoom})`;
   }, [zoom]);
@@ -45,8 +56,8 @@ function Grid() {
             x={rowIndex}
             y={colIndex}
             color={cells[rowIndex][colIndex]}
-            shouldFill={shouldFill}
-            showBorder={showGrid}
+            shouldFill={isPreview ? false : shouldFill}
+            showBorder={isPreview ? false : showGrid}
           />
         ))
       ),

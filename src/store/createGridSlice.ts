@@ -6,6 +6,7 @@ export type Grid = {
   cells: string[][];
   fillCell: (x: number, y: number, color: string) => void;
   resetCells: () => void;
+  setCells: (value: string[][]) => void;
 };
 
 const gridSlice: StoreSlice<Grid> = (set, get) => {
@@ -13,6 +14,9 @@ const gridSlice: StoreSlice<Grid> = (set, get) => {
     cells: [...Array(DEFAULT_SIZE).keys()].map((row, rowIndex) =>
       [...Array(DEFAULT_SIZE).keys()].map((col, colIndex) => DEFAULT_COLOR)
     ),
+    setCells: (value) => {
+      set({cells: value})
+    } ,
     resetCells: () =>
       set(immer((prev) => {
         prev.cells = prev.cells.map((cell: string[]) => cell.map(col => DEFAULT_COLOR))
