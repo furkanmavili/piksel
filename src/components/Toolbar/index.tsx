@@ -13,10 +13,18 @@ function Toolbar() {
         <div>Toolbar</div>
         <div className="flex justify-between md:justify-start md:flex-col md:space-y-10">
           <div className="flex flex-col md:flex-row">
-            <button onClick={() => setShowPreview(true)} type="button" className="nes-btn is-success flex-1">
-              Save
+            <button
+              onClick={() => setShowPreview(true)}
+              type="button"
+              className="nes-btn is-success flex-1"
+            >
+              Kaydet
             </button>
-            <button onClick={resetCells} type="button" className="nes-btn flex-1">
+            <button
+              onClick={resetCells}
+              type="button"
+              className="nes-btn flex-1"
+            >
               Reset
             </button>
           </div>
